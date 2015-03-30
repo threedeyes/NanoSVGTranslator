@@ -33,7 +33,7 @@ static const translation_format sOutputFormats[] = {
 		BITS_OUT_QUALITY,
 		BITS_OUT_CAPABILITY,
 		"image/x-be-bitmap",
-		"Be Bitmap Format (SVGTranslator)"
+		"Be Bitmap Format (NanoSVGTranslator)"
 	},
 };
 
@@ -58,7 +58,7 @@ SVGTranslator::SVGTranslator()
 		SVG_TRANSLATOR_VERSION,
 		sInputFormats, kNumInputFormats,
 		sOutputFormats, kNumOutputFormats,
-		"SVGTranslator",
+		"NanoSVGTranslator",
 		sDefaultSettings, kNumDefaultSettings,
 		B_TRANSLATOR_BITMAP, SVG_IMAGE_FORMAT)
 {

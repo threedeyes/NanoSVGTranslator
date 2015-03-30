@@ -22,7 +22,7 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 
 	BAlignment leftAlignment(B_ALIGN_LEFT, B_ALIGN_VERTICAL_UNSET);
 
-	BStringView *stringView = new BStringView("title", "SVG image translator");
+	BStringView *stringView = new BStringView("title", "NanoSVG image translator");
 	stringView->SetFont(be_bold_font);
 	stringView->SetExplicitAlignment(leftAlignment);
 	AddChild(stringView);
@@ -41,12 +41,12 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	AddChild(stringView);
 
 	stringView = new BStringView("copyright",
-		B_UTF8_COPYRIGHT "2005-2014 Haiku Inc.");
+		B_UTF8_COPYRIGHT "2005-2015 Haiku Inc.");
 	stringView->SetExplicitAlignment(leftAlignment);
 	AddChild(stringView);
 
 	stringView = new BStringView("my_copyright",
-		B_UTF8_COPYRIGHT "2013-2014 Gerasim Troeglazov <3dEyes@gmail.com>");
+		B_UTF8_COPYRIGHT "2013-2015 Gerasim Troeglazov <3dEyes@gmail.com>");
 	stringView->SetExplicitAlignment(leftAlignment);
 	AddChild(stringView);
 	
@@ -68,7 +68,7 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	AddChild(fScaleSlider);
 	
 	BString copyrightText;
-	copyrightText << "NanoSVG:\n   (c) 2013-14 Mikko Mononen memon@inside.org\n";
+	copyrightText << "NanoSVG:\n   (c) 2013-15 Mikko Mononen memon@inside.org\n";
 		
 	fCopyrightView = new BTextView("CopyrightLibs");
 	fCopyrightView->SetExplicitAlignment(leftAlignment);

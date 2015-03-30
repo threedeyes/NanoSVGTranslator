@@ -12,10 +12,10 @@
 int
 main(int argc, char *argv[])
 {
-	BApplication application("application/x-vnd.Haiku-SVGTranslator");
+	BApplication application("application/x-vnd.Haiku-NanoSVGTranslator");
 
 	status_t result;
-	result = LaunchTranslatorWindow(new SVGTranslator, "SVGTranslator Settings",
+	result = LaunchTranslatorWindow(new SVGTranslator, "NanoSVGTranslator Settings",
 		BRect(0, 0, 320, 200));
 	if (result != B_OK)
 		return 1;
