@@ -1,8 +1,8 @@
 /*
- * SVGTranslator.rdef
+ * NanoSVGTranslator.rdef
  */
 
-resource app_signature "application/x-vnd.Haiku-SVGTranslator";
+resource app_signature "application/x-vnd.Haiku-NanoSVGTranslator";
 
 resource app_version {
 	major  = 1,
@@ -11,5 +11,5 @@ resource app_version {
 	variety = 0,
 	internal = 0,
 	short_info = "1.0.0",
-	long_info = "Haiku SVGTranslator Add-Ons."
+	long_info = "Haiku NanoSVGTranslator Add-Ons."
 };
