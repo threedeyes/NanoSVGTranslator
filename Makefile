@@ -32,6 +32,7 @@ build : $(BINARY)
 	
 $(BINARY) : $(OBJDIR) $(OBJS) $(RSRCS)	
 	$(LD) $(CFLAGS) $(OBJS) -o $(BINARY) $(LDFLAGS) $(LIBS)
+	strip $(BINARY)
 	xres -o $(BINARY) $(RSRCS)
 	mimeset -f $(BINARY)
 
