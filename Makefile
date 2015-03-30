@@ -47,5 +47,5 @@ build/%.rsrc : res/%.rdef
 	rc -o $@ $<
 
 install:
-	mkdir -p /boot/home/config/add-ons/Translators
-	cp $(BINARY) /boot/home/config/add-ons/Translators
+	mkdir -p /boot/home/config/non-packaged/add-ons/Translators
+	cp $(BINARY) /boot/home/config/non-packaged/add-ons/Translators
