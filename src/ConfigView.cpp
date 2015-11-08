@@ -68,7 +68,9 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	AddChild(fScaleSlider);
 	
 	BString copyrightText;
-	copyrightText << "NanoSVG:\n   (c) 2013-15 Mikko Mononen memon@inside.org\n";
+	copyrightText << "NanoSVG - Simple stupid SVG parser\n";
+	copyrightText << "https://github.com/memononen/nanosvg\n\n";
+	copyrightText << "(c) 2013-15 Mikko Mononen memon@inside.org\n";	
 		
 	fCopyrightView = new BTextView("CopyrightLibs");
 	fCopyrightView->SetExplicitAlignment(leftAlignment);
