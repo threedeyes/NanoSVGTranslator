@@ -53,7 +53,7 @@ const uint32 kNumDefaultSettings = sizeof(sDefaultSettings)
 
 
 SVGTranslator::SVGTranslator()
-	: BaseTranslator("SVG Image",
+	: BaseTranslator("SVG Images",
 		"SVG image translator",
 		SVG_TRANSLATOR_VERSION,
 		sInputFormats, kNumInputFormats,
