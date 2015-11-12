@@ -10,25 +10,23 @@
 #include <StringView.h>
 #include <SpaceLayoutItem.h>
 #include <ControlLook.h>
+#include <LayoutBuilder.h>
 
 #include <stdio.h>
 
 #define SVG_SETTING_SCALE_CHANGED 'scch'
 
 ConfigView::ConfigView(TranslatorSettings *settings)
-	: BGroupView("SVGTranslator Settings", B_VERTICAL, 0)
+	: BGroupView("SVGTranslator Settings", B_VERTICAL)
 {
 	fSettings = settings;
 
+	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
+
 	BAlignment leftAlignment(B_ALIGN_LEFT, B_ALIGN_VERTICAL_UNSET);
 
-	BStringView *stringView = new BStringView("title", "NanoSVG image translator");
-	stringView->SetFont(be_bold_font);
-	stringView->SetExplicitAlignment(leftAlignment);
-	AddChild(stringView);
-
-	float spacing = be_control_look->DefaultItemSpacing();
-	AddChild(BSpaceLayoutItem::CreateVerticalStrut(spacing));
+	BStringView *fTitle = new BStringView("title", "NanoSVG image translator");
+	fTitle->SetFont(be_bold_font);
 
 	char version[256];
 	sprintf(version, "Version %d.%d.%d, %s",
@@ -36,21 +34,10 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 		int(B_TRANSLATION_MINOR_VERSION(SVG_TRANSLATOR_VERSION)),
 		int(B_TRANSLATION_REVISION_VERSION(SVG_TRANSLATOR_VERSION)),
 		__DATE__);
-	stringView = new BStringView("version", version);
-	stringView->SetExplicitAlignment(leftAlignment);
-	AddChild(stringView);
+	BStringView *fVersion = new BStringView("version", version);
 
-	stringView = new BStringView("copyright",
-		B_UTF8_COPYRIGHT "2005-2015 Haiku Inc.");
-	stringView->SetExplicitAlignment(leftAlignment);
-	AddChild(stringView);
-
-	stringView = new BStringView("my_copyright",
-		B_UTF8_COPYRIGHT "2013-2015 Gerasim Troeglazov <3dEyes@gmail.com>");
-	stringView->SetExplicitAlignment(leftAlignment);
-	AddChild(stringView);
-	
-	AddChild(BSpaceLayoutItem::CreateVerticalStrut(spacing));
+	BStringView *fCopyright = new BStringView("copyright",
+		B_UTF8_COPYRIGHT "2013-2015 Gerasim Troeglazov");
 
 	int32 scale = fSettings->SetGetInt32(SVG_SETTING_SCALE);
 	BString label = "Scale:";
@@ -65,8 +52,6 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 		new BMessage(SVG_SETTING_SCALE_CHANGED));
 	fScaleSlider->SetExplicitAlignment(leftAlignment);
 	
-	AddChild(fScaleSlider);
-	
 	BString copyrightText;
 	copyrightText << "NanoSVG - Simple stupid SVG parser\n";
 	copyrightText << "https://github.com/memononen/nanosvg\n\n";
@@ -79,20 +64,24 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	fCopyrightView->SetWordWrap(true);
 	fCopyrightView->SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
 	fCopyrightView->SetText(copyrightText.String());
-	fCopyrightView->SetExplicitMinSize(BSize(300,200));
 
 	BFont font;
-	font.SetSize(font.Size() * 0.9);
+	font.SetSize(font.Size() * 0.95);
 	fCopyrightView->SetFontAndColor(&font, B_FONT_SIZE, NULL);
-	AddChild(fCopyrightView);
-
-	fCopyrightView->SetExplicitAlignment(leftAlignment);
 	
-	AddChild(BSpaceLayoutItem::CreateGlue());
-	GroupLayout()->SetInsets(B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING, 
-		B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING);
-
-	SetExplicitPreferredSize(GroupLayout()->MinSize());		
+	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+		.SetInsets(B_USE_DEFAULT_SPACING)
+		.Add(fTitle)
+		.Add(fVersion)
+		.Add(fCopyright)
+		.AddGlue()
+		.AddStrut(B_USE_SMALL_SPACING)
+		.Add(fScaleSlider)
+		.AddStrut(B_USE_SMALL_SPACING)
+		.Add(fCopyrightView)
+		.AddStrut(B_USE_SMALL_SPACING)
+		.AddGlue()
+		.End();
 }
 
 
