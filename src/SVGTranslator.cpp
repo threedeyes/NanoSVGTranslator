@@ -78,13 +78,15 @@ SVGTranslator::DerivedIdentify(BPositionIO *stream,
 	if (outType != B_TRANSLATOR_BITMAP)
 		return B_NO_TRANSLATOR;
 		
-	char svgData[513];
-	ssize_t readedBytes = 512;
-	readedBytes = stream->Read(svgData, 512);
+	char svgData[256];
+	ssize_t readedBytes = 255;
+	readedBytes = stream->Read(svgData, 255);
 	svgData[readedBytes] = 0;
 
-	if(strncasecmp(svgData, "<?xml", 5) != 0)
+	if(strncasecmp(svgData, "<?xml", 5) != 0
+		&& strncasecmp(svgData, "<svg", 4) != 0) {
 		return B_NO_TRANSLATOR;
+	}
 
 	if(strcasestr(svgData, "<svg") == NULL
 		&& strcasestr(svgData, "<!DOCTYPE SVG") == NULL) {
