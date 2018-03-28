@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2017, Gerasim Troeglazov, 3dEyes@gmail.com. All rights reserved.
+ * Copyright 2015-2018, Gerasim Troeglazov, 3dEyes@gmail.com. All rights reserved.
  * Distributed under the terms of the MIT License.
  */
 
@@ -19,7 +19,7 @@
 #include <File.h>
 #include <ByteOrder.h>
 
-#define SVG_TRANSLATOR_VERSION B_TRANSLATION_MAKE_VERSION(1, 0, 4)
+#define SVG_TRANSLATOR_VERSION B_TRANSLATION_MAKE_VERSION(1, 0, 5)
 #define SVG_IMAGE_FORMAT	'SVG '
 
 #define SVG_IN_QUALITY		0.5
