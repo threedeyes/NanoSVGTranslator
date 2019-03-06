@@ -7,9 +7,9 @@ resource app_signature "application/x-vnd.Haiku-NanoSVGTranslator";
 resource app_version {
 	major  = 1,
 	middle = 0,
-	minor  = 5,
+	minor  = 6,
 	variety = 0,
 	internal = 0,
-	short_info = "1.0.5",
+	short_info = "1.0.6",
 	long_info = "Haiku NanoSVGTranslator Add-On."
 };
