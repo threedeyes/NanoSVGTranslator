@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, Gerasim Troeglazov, 3dEyes@gmail.com. All rights reserved.
+ * Copyright 2015-2020, Gerasim Troeglazov, 3dEyes@gmail.com. All rights reserved.
  * Distributed under the terms of the MIT License.
  */
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2018, Gerasim Troeglazov, 3dEyes@gmail.com. All rights reserved.
+ * Copyright 2015-2020, Gerasim Troeglazov, 3dEyes@gmail.com. All rights reserved.
  * Distributed under the terms of the MIT License.
  */
 
@@ -37,7 +37,7 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	BStringView *fVersion = new BStringView("version", version);
 
 	BStringView *fCopyright = new BStringView("copyright",
-		B_UTF8_COPYRIGHT "2013-2018 Gerasim Troeglazov");
+		B_UTF8_COPYRIGHT "2013-2020 Gerasim Troeglazov");
 
 	int32 scale = fSettings->SetGetInt32(SVG_SETTING_SCALE);
 	BString label = "Scale:";
@@ -55,7 +55,7 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	BString copyrightText;
 	copyrightText << "NanoSVG - Simple stupid SVG parser\n";
 	copyrightText << "https://github.com/memononen/nanosvg\n\n";
-	copyrightText << "(c) 2013-2018 Mikko Mononen memon@inside.org\n";
+	copyrightText << "(c) 2013-2020 Mikko Mononen memon@inside.org\n";
 
 	fCopyrightView = new BTextView("CopyrightLibs");
 	fCopyrightView->SetExplicitAlignment(leftAlignment);
