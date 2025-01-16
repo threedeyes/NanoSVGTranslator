@@ -37,7 +37,8 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	BStringView *fVersion = new BStringView("version", version);
 
 	BStringView *fCopyright = new BStringView("copyright",
-		B_UTF8_COPYRIGHT "2013-2020 Gerasim Troeglazov");
+		B_UTF8_COPYRIGHT "2013-2020 Gerasim Troeglazov\n"
+        B_UTF8_COPYRIGHT "2025 Gregor B. Rosenauer (update, prolog check fix)");
 
 	int32 scale = fSettings->SetGetInt32(SVG_SETTING_SCALE);
 	BString label = "Scale:";
@@ -51,7 +52,7 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	fScaleSlider->SetModificationMessage(
 		new BMessage(SVG_SETTING_SCALE_CHANGED));
 	fScaleSlider->SetExplicitAlignment(leftAlignment);
-	
+
 	BString copyrightText;
 	copyrightText << "NanoSVG - Simple stupid SVG parser\n";
 	copyrightText << "https://github.com/memononen/nanosvg\n\n";
@@ -68,7 +69,7 @@ ConfigView::ConfigView(TranslatorSettings *settings)
 	BFont font;
 	font.SetSize(font.Size() * 0.95);
 	fCopyrightView->SetFontAndColor(&font, B_FONT_SIZE, NULL);
-	
+
 	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
 		.SetInsets(B_USE_DEFAULT_SPACING)
 		.Add(fTitle)
@@ -104,7 +105,7 @@ ConfigView::MessageReceived(BMessage* message)
 	switch (message->what) {
 		case SVG_SETTING_SCALE_CHANGED:
 		{
-			int32 value = fScaleSlider->Value();			
+			int32 value = fScaleSlider->Value();
 			if (value <= 0 || value > 100.0)
 				break;
 

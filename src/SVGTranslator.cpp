@@ -3,7 +3,7 @@
  * Distributed under the terms of the MIT License.
  */
 
-
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -74,22 +74,22 @@ status_t
 SVGTranslator::DerivedIdentify(BPositionIO *stream,
 	const translation_format *format, BMessage *ioExtension,
 	translator_info *info, uint32 outType)
-{	
+{
 	if (outType != B_TRANSLATOR_BITMAP)
 		return B_NO_TRANSLATOR;
-		
-	char svgData[256];
-	ssize_t readedBytes = 255;
-	readedBytes = stream->Read(svgData, 255);
-	svgData[readedBytes] = 0;
 
-	if(strncasecmp(svgData, "<?xml", 5) != 0
-		&& strncasecmp(svgData, "<svg", 4) != 0) {
-		return B_NO_TRANSLATOR;
-	}
+	char svgDataHeader[256];
+	ssize_t bytesRead;
+	bytesRead = stream->Read(svgDataHeader, 255);
+	svgDataHeader[bytesRead] = 0;
 
-	if(strcasestr(svgData, "<svg") == NULL
-		&& strcasestr(svgData, "<!DOCTYPE SVG") == NULL) {
+    // ignore whitespace and case as per XML/SVG spec
+    BString svgProlog(svgDataHeader, bytesRead);
+    svgProlog = svgProlog.Trim().ToLower();
+
+    // only <svg...> is actually required, see https://oreillymedia.github.io/Using_SVG/extras/ch01-XML.html
+	if (! (svgProlog.StartsWith("<?xml") || svgProlog.FindFirst("<svg") >= 0)) {
+        std::cout << "invalid prolog: " << svgProlog << std::endl;
 		return B_NO_TRANSLATOR;
 	}
 
@@ -114,7 +114,7 @@ SVGTranslator::DerivedTranslate(BPositionIO *source,
 
 	switch (baseType) {
 		case 0:
-		{								
+		{
 			if (outType != B_TRANSLATOR_BITMAP)
 				return B_NO_TRANSLATOR;
 
