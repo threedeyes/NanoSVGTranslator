@@ -7,7 +7,7 @@
 #ifndef CONFIG_VIEW_H
 #define CONFIG_VIEW_H
 
-#include "TranslatorSettings.h"
+#include "shared/TranslatorSettings.h"
 
 #include <View.h>
 #include <TextView.h>
@@ -22,7 +22,7 @@ class ConfigView : public BGroupView {
 	public:
 		ConfigView(TranslatorSettings *settings);
 		virtual ~ConfigView();
-		
+
 		virtual void AllAttached();
 		virtual void MessageReceived(BMessage* message);
 

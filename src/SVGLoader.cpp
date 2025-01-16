@@ -5,7 +5,6 @@
 
 
 #include "SVGLoader.h"
-#include "BaseTranslator.h"
 
 #define NANOSVG_IMPLEMENTATION
 #define NANOSVG_ALL_COLOR_KEYWORDS
@@ -60,7 +59,7 @@ SVGLoader::RenderImage(BPositionIO *target, float scale)
 	fRasterizer = nsvgCreateRasterizer();
 	if (fRasterizer == NULL)
 		return 	B_NO_TRANSLATOR;
-	
+
 	unsigned char* img = new unsigned char[width * height * 4];
 
 	nsvgRasterize(fRasterizer, fImage, 0, 0, scale, img, width, height, width*4);
@@ -75,13 +74,13 @@ SVGLoader::RenderImage(BPositionIO *target, float scale)
 	bitsHeader.colors = B_RGBA32;
 	bitsHeader.dataSize = bitsHeader.rowBytes * height;
 	if (swap_data(B_UINT32_TYPE, &bitsHeader,
-		sizeof(TranslatorBitmap), B_SWAP_HOST_TO_BENDIAN) != B_OK) {		
+		sizeof(TranslatorBitmap), B_SWAP_HOST_TO_BENDIAN) != B_OK) {
 		return B_NO_TRANSLATOR;
 	}
 	target->Write(&bitsHeader, sizeof(TranslatorBitmap));
 
 	int pixels = width * height;
-	
+
 	uint8 *ptr = img;
 	for (int i=0; i<pixels; i++, ptr+=4) {
 		uint8 rgba[4];
@@ -91,7 +90,7 @@ SVGLoader::RenderImage(BPositionIO *target, float scale)
 		rgba[3] = ptr[3];
 		target->Write(rgba, 4);
 	}
-	
+
 	nsvgDeleteRasterizer(fRasterizer);
 	delete[] img;
 

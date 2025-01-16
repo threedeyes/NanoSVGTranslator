@@ -7,8 +7,7 @@
 #ifndef SVG_TRANSLATOR_H
 #define SVG_TRANSLATOR_H
 
-
-#include "BaseTranslator.h"
+#include "shared/BaseTranslator.h"
 
 #include <Translator.h>
 #include <TranslatorFormats.h>
@@ -19,7 +18,7 @@
 #include <File.h>
 #include <ByteOrder.h>
 
-#define SVG_TRANSLATOR_VERSION B_TRANSLATION_MAKE_VERSION(1, 0, 8)
+#define SVG_TRANSLATOR_VERSION B_TRANSLATION_MAKE_VERSION(1, 0, 9)
 #define SVG_IMAGE_FORMAT	'SVG '
 
 #define SVG_IN_QUALITY		0.5
@@ -43,7 +42,7 @@ class SVGTranslator : public BaseTranslator {
 		virtual status_t DerivedCanHandleImageSize(float width,
 			float height) const;
 
-		virtual BView *NewConfigView(TranslatorSettings *settings);	
+		virtual BView *NewConfigView(TranslatorSettings *settings);
 
 	protected:
 		virtual ~SVGTranslator();

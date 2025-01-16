@@ -2,13 +2,13 @@
 BINARY := ./build/NanoSVGTranslator
 
 OBJS := shared/TranslatorSettings.o \
-		shared/TranslatorWindow.o \
-		shared/BaseTranslator.o \
-		shared/StreamBuffer.o \
-		SVGTranslator.o \
-		SVGLoader.o \
-		ConfigView.o \
-		SVGTranslatorApp.o
+	shared/TranslatorWindow.o \
+	shared/BaseTranslator.o \
+	shared/StreamBuffer.o \
+	SVGTranslator.o \
+	SVGLoader.o \
+	ConfigView.o \
+	SVGTranslatorApp.o
 
 OBJDIR := build
 
@@ -20,7 +20,7 @@ OBJS	:= $(addprefix $(OBJDIR)/,$(OBJS))
 CC := g++
 LD := $(CC)
 
-LIBS := -lbe -ltranslation -lroot
+LIBS := -lbe -llocalestub -ltranslation -lroot lib/libnanosvg.so
 CFLAGS := -w -g -I./src -I./src/shared -I./nanosvg
 LDFLAGS := -g
 
@@ -49,3 +49,4 @@ build/%.rsrc : res/%.rdef
 install:
 	mkdir -p /boot/home/config/non-packaged/add-ons/Translators
 	cp $(BINARY) /boot/home/config/non-packaged/add-ons/Translators
+	cp lib/libnanosvg.so /boot/home/config/non-packaged/lib/
