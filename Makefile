@@ -21,7 +21,7 @@ CC := g++
 LD := $(CC)
 
 LIBS := -lbe -ltranslation -lroot
-CFLAGS := -w -g -I./src -I./src/shared -I./nanosvg
+CFLAGS := -w -g -I./src -I./src/shared -I./nanosvg_ext
 LDFLAGS := -g
 
 .PHONY : clean build install
